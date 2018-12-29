@@ -1,0 +1,29 @@
+{
+  "name": "saltyfish_server",
+  "version": "1.0.0",
+  "description": "本项目为咸鱼 App 的 Koa2 服务端。其负责和 MySQL 服务器进行交互，并处理用户登录和数据同步等逻辑。",
+  "main": "./bin/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiskonEmilia/SaltyFish_Server.git"
+  },
+  "author": "SiskonEmilia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SiskonEmilia/SaltyFish_Server/issues"
+  },
+  "homepage": "https://github.com/SiskonEmilia/SaltyFish_Server#readme",
+  "dependencies": {
+    "js-sha256": "^0.9.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.16.0"
+  }
+}
