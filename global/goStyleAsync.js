@@ -1,4 +1,4 @@
-export default function go(promise) {
+module.exports = function (promise) {
   return promise.then(data => {
      return [null, data];
   })

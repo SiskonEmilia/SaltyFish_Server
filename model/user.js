@@ -7,10 +7,10 @@ async function addUser(user) {
   /*
   * user.username user.password
   */
-  let [err, rows] = await pool.query(
+  let [err, rows] = await go(pool.query(
     `SELECT username FROM ${globals.USER_TABLE_NAME}
     WHERE username='${user.username}'`
-  );
+  ));
   
   if (err) {
     console.error("Error while trying to add user: ", user);
@@ -23,8 +23,8 @@ async function addUser(user) {
     return [null, false]
   }
 
-  [err, rows] = query(`INSERT INTO ${globals.USER_TABLE_NAME} (username, password, time)
-        VALUES('${user.username}', '${sha256(user.password)}', 0)`)
+  [err, rows] = await go(pool.query(`INSERT INTO ${globals.USER_TABLE_NAME} (username, password, time)
+        VALUES('${user.username}', '${sha256(user.password)}', 0)`));
   
   if (err) {
     console.error("Error while trying to add user: ", user);
@@ -40,10 +40,10 @@ async function checkPass(user) {
   /*
   * user.username user.password
   */
-  let [err, rows] = await pool.query(
+  let [err, rows] = await go(pool.query(
     `SELECT username FROM ${globals.USER_TABLE_NAME}
     WHERE username='${user.username}' AND password='${sha256(user.password)}'`
-  );
+  ));
 
   if (err) {
     console.error("Error while checking pass of user: ", user);
@@ -61,10 +61,10 @@ async function checkPass(user) {
 }
 
 async function getUpdateTime(user) {
-  let [err, rows] = await pool.query(
+  let [err, rows] = await go(pool.query(
     `SELECT time FROM ${globals.USER_TABLE_NAME}
     WHERE username='${user.username}'`
-  )
+  ));
 
   if (err) {
     console.error("Error while querying updated time: ", user.username);
@@ -76,10 +76,10 @@ async function getUpdateTime(user) {
 }
 
 async function putData(user) {
-  let [err, rows] = await pool.query(
+  let [err, rows] = await go(pool.query(
     `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data.toString()}'
     WHERE username='${user.username}'`
-  )
+  ));
 
   if (err) {
     console.error("Error while putting data: ", user.username);
@@ -92,10 +92,10 @@ async function putData(user) {
 }
 
 async function getData(user) {
-  let [err, rows] = await pool.query(
+  let [err, rows] = await go(pool.query(
     `SELECT data FROM ${globals.USER_TABLE_NAME}
     WHERE username='${user.username}'`
-  )
+  ));
 
   if (err) {
     console.error("Error while putting data: ", user.username);
@@ -120,10 +120,10 @@ async function updateUser(user) {
     return [null, false];
   }
 
-  [err, rows] = await pool.query(
+  [err, rows] = await go(pool.query(
     `UPDATE ${globals.USER_TABLE_NAME} SET password = '${user.password}'
-    WHERE username='${user.username}`
-  )
+    WHERE username='${user.username}'`
+  ));
 
   if (err) {
     console.error("Error while updating user info: ", user.username);

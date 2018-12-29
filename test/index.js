@@ -6,7 +6,7 @@ let main = new Vue({
       password: '',
       oldPassword: '',
       data: '',
-      urlRoot: 'http://' + window.location.host,
+      urlRoot: 'http://' + window.location.host + '/',
       urlRelative: '',
       returnedData: ''
     },
@@ -16,7 +16,7 @@ let main = new Vue({
       let vueInstance = this;
       axios.get('/' + this.testForm.urlRelative)
       .then(response => {
-        vueInstance.returnedData = JSON.stringify({
+        vueInstance.testForm.returnedData = JSON.stringify({
           statusCode: response.status,
           returnedData: response.data
         } , null, 4)
@@ -25,7 +25,7 @@ let main = new Vue({
       .catch(error => {
         vueInstance.$message.error('Error')
         if (error.response) {
-          vueInstance.returnedData = JSON.stringify({
+          vueInstance.testForm.returnedData = JSON.stringify({
             statusCode: error.response.status,
             returnedData: error.response.data
           } , null, 4)
@@ -43,7 +43,7 @@ let main = new Vue({
         time: (new Date()).getTime()
       })
       .then(response => {
-        vueInstance.returnedData = JSON.stringify({
+        vueInstance.testForm.returnedData = JSON.stringify({
           statusCode: response.status,
           returnedData: response.data
         } , null, 4)
@@ -52,7 +52,7 @@ let main = new Vue({
       .catch(error => {
         vueInstance.$message.error('Error')
         if (error.response) {
-          vueInstance.returnedData = JSON.stringify({
+          vueInstance.testForm.returnedData = JSON.stringify({
             statusCode: error.response.status,
             returnedData: error.response.data
           } , null, 4)

@@ -47,14 +47,14 @@ router.all('/data/*', async (ctx, next) => {
 })
 
 router.post('/user/sign_up', async ctx => {
-  if(ctx.body.username === undefined || ctx.body.password === undefined) {
+  if(ctx.request.body.username === undefined || ctx.request.body.password === undefined) {
     ctx.body = {
       status: "Failed",
       message: "Invalid usage"
     }
     return;
   }
-  let [err, status] = await UserDB.addUser(ctx.body)
+  let [err, status] = await UserDB.addUser(ctx.request.body)
   if (err) {
     ctx.throw(500, 'Server error');
   }
@@ -72,14 +72,14 @@ router.post('/user/sign_up', async ctx => {
 })
 
 router.post('/user/login', async ctx => {
-  if(ctx.body.username === undefined || ctx.body.password === undefined) {
+  if(ctx.request.body.username === undefined || ctx.request.body.password === undefined) {
     ctx.body = {
       status: "Failed",
       message: "Invalid usage"
     }
     return;
   }
-  let [err, status] = await UserDB.checkPass(ctx.body)
+  let [err, status] = await UserDB.checkPass(ctx.request.body)
   if (err) {
     ctx.throw(500, 'Server error');
   }
@@ -90,7 +90,7 @@ router.post('/user/login', async ctx => {
     }
   }
   else {
-    ctx.session.user = ctx.body.username
+    ctx.session.user = ctx.request.body.username
     ctx.body = {
       status: "OK"
     }
@@ -98,9 +98,9 @@ router.post('/user/login', async ctx => {
 })
 
 router.post('/user/update', async ctx => {
-  if(ctx.body.username === undefined || 
-    ctx.body.password === undefined || 
-    ctx.body.oldPassword === undefined) {
+  if(ctx.request.body.username === undefined || 
+    ctx.request.body.password === undefined || 
+    ctx.request.body.oldPassword === undefined) {
     ctx.body = {
       status: "Failed",
       message: "Invalid usage"
@@ -108,7 +108,7 @@ router.post('/user/update', async ctx => {
     return;
   }
 
-  let [err, status] = await UserDB.updateUser(ctx.body);
+  let [err, status] = await UserDB.updateUser(ctx.request.body);
   if (err) {
     ctx.throw(500, 'Server error');
   }
@@ -149,7 +149,7 @@ router.get('/data/get_time', async ctx => {
 })
 
 router.post('/data/put', async ctx => {
-  if (ctx.body.data === undefined) {
+  if (ctx.request.body.data === undefined) {
     ctx.body = {
       status: "Failed",
       message: "Invalid usage"
@@ -157,7 +157,7 @@ router.post('/data/put', async ctx => {
     return;
   }
 
-  let [err, status] = await UserDB.putData(ctx.body)
+  let [err, status] = await UserDB.putData(ctx.request.body)
   if (err) {
     ctx.throw(500, 'Server error');
   }

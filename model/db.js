@@ -28,7 +28,7 @@ let query = function( sql, values ) {
 }
 
 query(`CREATE TABLE IF NOT EXISTS ${globals.USER_TABLE_NAME}
-      (username TEXT NOT NULL,
+      (username VARCHAR(200) NOT NULL,
       password TEXT,
       data TEXT,
       time INTEGER,

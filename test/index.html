@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/base.css">
   <script src="https://unpkg.com/element-ui@2.4.11/lib/index.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
   <body>
     <div id="main">
@@ -15,23 +16,25 @@
             <template slot="prepend">{{ testForm.urlRoot }}</template>
           </el-input>
         </el-form-item>
-        <el-form-item label="username">
+        <el-form-item label="Username">
           <el-input v-model="testForm.username"></el-input>
         </el-form-item>
-        <el-form-item label="password">
+        <el-form-item label="Password">
           <el-input v-model="testForm.password"></el-input>
         </el-form-item>
-        <el-form-item label="oldPassword">
+        <el-form-item label="OldPassword">
           <el-input v-model="testForm.oldPassword"></el-input>
         </el-form-item>
-        <el-form-item label="data">
+        <el-form-item label="Data">
           <el-input v-model="testForm.data"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item
+          label="Returned">
           <el-input
             type="textarea"
             autosize
             placeholder="Returned data shown here"
+            disabled
             v-model="testForm.returnedData">
           </el-input>
         </el-form-item>
