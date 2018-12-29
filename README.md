@@ -41,3 +41,7 @@ node bin/index.js
 1. Error: connect ECONNREFUSED 127.0.0.1:3306
 
   请先启动您的 MySQL 后台服务器
+
+### 网页测试
+
+为了方便您测试服务器是否正常运行，我们提供了一个测试用的网页客户端，如要启用，请将 bin/index.js 中 190-191 行的代码取消注释，然后重新运行服务端即可。然后您就可以在 [http://localhost:12192/test/index.html](http://localhost:12192/test/index.html) 处进行测试了。

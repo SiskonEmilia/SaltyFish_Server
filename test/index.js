@@ -6,7 +6,7 @@ let main = new Vue({
       password: '',
       oldPassword: '',
       data: '',
-      urlRoot: 'http://' + window.location.host + '/',
+      urlRoot: 'http://' + window.location.host,
       urlRelative: '',
       returnedData: ''
     },
@@ -14,7 +14,7 @@ let main = new Vue({
   methods: {
     get: function() {
       let vueInstance = this;
-      axios.get('/' + this.testForm.urlRelative)
+      axios.get(this.testForm.urlRelative)
       .then(response => {
         vueInstance.testForm.returnedData = JSON.stringify({
           statusCode: response.status,
@@ -35,7 +35,7 @@ let main = new Vue({
     },
     post: function() {
       let vueInstance = this;
-      axios.post('/' + this.testForm.urlRelative, {
+      axios.post(this.testForm.urlRelative, {
         username: vueInstance.testForm.username,
         password: vueInstance.testForm.password,
         oldPassword: vueInstance.testForm.oldPassword,
