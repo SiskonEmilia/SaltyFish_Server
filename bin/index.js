@@ -183,12 +183,14 @@ router.get('/data/get', async ctx => {
   }
 })
 
-// Test Module Begin //
+// ---Test Module Begin--- //
 // You should comment all codes in this module //
 // When the server code is formally deployed //
-const serve = require('koa2-static-middleware');
-router.get('/test/*', serve('./test'));
-// Test Module End //
+
+// const serve = require('koa2-static-middleware');
+// router.get('/test/*', serve('./test'));
+
+// ---Test Module End--- //
 
 router.all('*', async ctx => {
   ctx.throw(404, "PAGE_NOT_FOUND");
