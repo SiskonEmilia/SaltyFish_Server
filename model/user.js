@@ -77,7 +77,7 @@ async function getUpdateTime(user) {
 
 async function putData(user) {
   let [err, rows] = await pool.query(
-    `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data}'
+    `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data.toString()}'
     WHERE username='${user.username}'`
   )
 
