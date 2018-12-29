@@ -30,17 +30,17 @@ node bin/index.js
 
 1. Error: 1251 - Client does not support authentication protocol requested by server; consider upgrading MySQL client
 
-  请手动连接到您的 MySQL 控制台，并执行以下指令：
+    请手动连接到您的 MySQL 控制台，并执行以下指令：
 
-  ```SQL
-  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
-  ```
+    ```SQL
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+    ```
 
-  然后将 global/global.js 中的 `MYSQL_USERNAME` 和 `MYSQL_PASSWORD` 分别设置为 root 和 password。
+    然后将 global/global.js 中的 `MYSQL_USERNAME` 和 `MYSQL_PASSWORD` 分别设置为 root 和 password。
 
 1. Error: connect ECONNREFUSED 127.0.0.1:3306
 
-  请先启动您的 MySQL 后台服务器
+    请先启动您的 MySQL 后台服务器
 
 ### 网页测试
 
