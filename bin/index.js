@@ -182,7 +182,7 @@ router.get('/data/get', async ctx => {
   else {
     ctx.body = {
       status: 'OK',
-      data: JSON.parse(rows[0].data)
+      message: JSON.parse(rows[0].data)
     }
   }
 })
