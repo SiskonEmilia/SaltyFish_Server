@@ -77,11 +77,9 @@ async function getUpdateTime(user) {
 
 async function putData(user) {
   let [err, rows] = await go(pool.query(
-    `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data.toString().replace(/\'/g, '\\\'').replace(/\"/g, '\\\"')}'
+    `UPDATE ${globals.USER_TABLE_NAME} SET data='${JSON.stringify(user.data)}'
     WHERE username='${user.username.replace(/\'/g, '\\\'').replace(/\"/g, '\\\"')}'`
   ));
-
-  console.log(user.data.toString())
 
   if (err) {
     console.error("Error while putting data: ", user.username);
