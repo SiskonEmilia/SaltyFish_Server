@@ -157,6 +157,8 @@ router.post('/data/put', async ctx => {
     return;
   }
 
+  ctx.request.body.username = ctx.session.user;
+
   let [err, status] = await UserDB.putData(ctx.request.body)
   if (err) {
     ctx.throw(500, 'Server error');
