@@ -9,7 +9,7 @@ async function addUser(user) {
   */
   let [err, rows] = await go(pool.query(
     `SELECT username FROM ${globals.USER_TABLE_NAME}
-    WHERE username='${user.username}'`
+    WHERE username='${user.username.replace(/\'/g, '"')}'`
   ));
   
   if (err) {
@@ -24,7 +24,7 @@ async function addUser(user) {
   }
 
   [err, rows] = await go(pool.query(`INSERT INTO ${globals.USER_TABLE_NAME} (username, password, time)
-        VALUES('${user.username}', '${sha256(user.password)}', 0)`));
+        VALUES('${user.username.replace(/\'/g, '"')}', '${sha256(user.password)}', 0)`));
   
   if (err) {
     console.error("Error while trying to add user: ", user);
@@ -42,7 +42,7 @@ async function checkPass(user) {
   */
   let [err, rows] = await go(pool.query(
     `SELECT username FROM ${globals.USER_TABLE_NAME}
-    WHERE username='${user.username}' AND password='${sha256(user.password)}'`
+    WHERE username='${user.username.replace(/\'/g, '"')}' AND password='${sha256(user.password)}'`
   ));
 
   if (err) {
@@ -63,7 +63,7 @@ async function checkPass(user) {
 async function getUpdateTime(user) {
   let [err, rows] = await go(pool.query(
     `SELECT time FROM ${globals.USER_TABLE_NAME}
-    WHERE username='${user.username}'`
+    WHERE username='${user.username.replace(/\'/g, '"')}'`
   ));
 
   if (err) {
@@ -77,8 +77,8 @@ async function getUpdateTime(user) {
 
 async function putData(user) {
   let [err, rows] = await go(pool.query(
-    `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data.toString()}'
-    WHERE username='${user.username}'`
+    `UPDATE ${globals.USER_TABLE_NAME} SET data='${user.data.toString().replace(/\'/g, '"')}'
+    WHERE username='${user.username.replace(/\'/g, '"')}'`
   ));
 
   if (err) {
@@ -94,7 +94,7 @@ async function putData(user) {
 async function getData(user) {
   let [err, rows] = await go(pool.query(
     `SELECT data FROM ${globals.USER_TABLE_NAME}
-    WHERE username='${user.username}'`
+    WHERE username='${user.username.replace(/\'/g, '"')}'`
   ));
 
   if (err) {
@@ -103,7 +103,7 @@ async function getData(user) {
     return [err, null];
   }
 
-  console(user.username, "is getting data.")
+  console.log(user.username, "is getting data.")
   return [null, rows];
 }
 
@@ -122,7 +122,7 @@ async function updateUser(user) {
 
   [err, rows] = await go(pool.query(
     `UPDATE ${globals.USER_TABLE_NAME} SET password = '${user.password}'
-    WHERE username='${user.username}'`
+    WHERE username='${user.username.replace(/\'/g, '"')}'`
   ));
 
   if (err) {

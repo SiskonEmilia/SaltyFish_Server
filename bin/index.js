@@ -160,6 +160,7 @@ router.post('/data/put', async ctx => {
   let [err, status] = await UserDB.putData(ctx.request.body)
   if (err) {
     ctx.throw(500, 'Server error');
+    console.error(err);
   }
   else {
     ctx.body = {
@@ -169,11 +170,12 @@ router.post('/data/put', async ctx => {
 })
 
 router.get('/data/get', async ctx => {
-  let [err, rows] = await UserDB.putData({
+  let [err, rows] = await UserDB.getData({
     username: ctx.session.user
   })
   if (err) {
     ctx.throw(500, 'Server error');
+    console.error(err);
   }
   else {
     ctx.body = {
@@ -187,8 +189,8 @@ router.get('/data/get', async ctx => {
 // You should comment all codes in this module //
 // When the server code is formally deployed //
 
-// const serve = require('koa2-static-middleware');
-// router.get('/test/*', serve('./test'));
+const serve = require('koa2-static-middleware');
+router.get('/test/*', serve('./test'));
 
 // ---Test Module End--- //
 
