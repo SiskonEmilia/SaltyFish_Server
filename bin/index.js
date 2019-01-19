@@ -180,7 +180,7 @@ router.get('/data/get', async ctx => {
   else {
     ctx.body = {
       status: 'OK',
-      data: rows[0].data
+      data: JSON.parse(rows[0].data)
     }
   }
 })
