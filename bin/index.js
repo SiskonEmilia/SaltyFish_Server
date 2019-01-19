@@ -143,7 +143,7 @@ router.get('/data/get_time', async ctx => {
   else {
     ctx.body = {
       status: 'OK',
-      time: rows[0]
+      time: rows[0].time
     }
   }
 })
@@ -180,7 +180,7 @@ router.get('/data/get', async ctx => {
   else {
     ctx.body = {
       status: 'OK',
-      data: rows[0]
+      data: rows[0].data
     }
   }
 })
