@@ -81,6 +81,8 @@ async function putData(user) {
     WHERE username='${user.username.replace(/\'/g, '\\\'').replace(/\"/g, '\\\"')}'`
   ));
 
+  console.log(user.data.toString())
+
   if (err) {
     console.error("Error while putting data: ", user.username);
     console.error(err);
